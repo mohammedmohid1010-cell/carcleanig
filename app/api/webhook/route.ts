@@ -34,7 +34,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ status: 'ok' })
     }
 
-    const { phoneNumberId, from, text, customerName } = incoming
+    const { from, text, customerName } = incoming
+    const phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID!
 
     // Get conversation history for context
     const history = await getConversationHistory(from)
