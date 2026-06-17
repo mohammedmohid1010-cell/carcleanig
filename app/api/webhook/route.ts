@@ -29,8 +29,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ status: 'ok' })
     }
 
+    console.log('WEBHOOK BODY:', JSON.stringify(body, null, 2))
+
     const incoming = extractMessageData(body)
     if (!incoming) {
+      console.log('extractMessageData returned null — unsupported message format')
       return NextResponse.json({ status: 'ok' })
     }
 
